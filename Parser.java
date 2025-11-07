@@ -11,8 +11,6 @@ public class Parser {
      * Vertical Link, empty ]
      */
 
-
-     
     public static LadderElements.LadderElement[][] buildExampleGrid() {
         return new LadderElements.LadderElement[][] {
                 {
@@ -34,9 +32,31 @@ public class Parser {
         };
     }
 
+    // P6.SG = (P6.QS /\ True) V P6.SG /\ ¬P6.QX /\ True 
+    public static LadderElements.LadderElement[][] buildExampleGrid2() {
+        return new LadderElements.LadderElement[][] {
+                {
+                        LadderElements.LeftPowerRail.INSTANCE,
+                        new LadderElements.Contact("P6.QS"),
+                        LadderElements.HorizontalLink.INSTANCE,
+                        LadderElements.HorizontalLink.INSTANCE,
+                        LadderElements.VerticalLink.INSTANCE,
+                        new LadderElements.Coil("P6.SG")
+                },
+                {
+                        LadderElements.LeftPowerRail.INSTANCE,
+                        new LadderElements.NegatedContact("P6.QX"),
+                        LadderElements.HorizontalLink.INSTANCE,
+                        new LadderElements.Contact("P6.SG"),
+                        LadderElements.EndOfVerticalLink.INSTANCE,
+                        LadderElements.Empty.INSTANCE
+                }
+        };
+    }
+
     /** Simple demo runner to print the grid. */
     public static void main(String[] args) {
-        LadderElements.LadderElement[][] grid = buildExampleGrid();
+        LadderElements.LadderElement[][] grid = buildExampleGrid2();
 
         System.out.println("Example ladder grid:");
         for (int r = 0; r < grid.length; r++) {
