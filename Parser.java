@@ -45,7 +45,7 @@ public class Parser {
     }
 
     public static void main(String[] args) {
-        DataTypes.DT[][] grid = buildExampleGrid1();
+        DataTypes.DT[][] grid = buildExampleGrid2();
 
         for (int r = 0; r < grid.length; r++) {
             // System.out.print("Row " + r + ": ");
