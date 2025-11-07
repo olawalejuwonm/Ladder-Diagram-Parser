@@ -1,7 +1,8 @@
 /**
  * Simple data types for ladder diagram elements.
  *
- * This file contains a small type hierarchy for common ladder diagram components:
+ * This file contains a small type hierarchy for common ladder diagram
+ * components:
  * - Coil (has an attribute `var`)
  * - Contact (has an attribute `var`)
  * - NegatedContact (inherits Contact)
@@ -12,11 +13,14 @@
  * - Empty
  */
 public final class LadderElements {
+    private final int bracketOpened = 0;
 
-    private LadderElements() { /* utility holder */ }
+    private LadderElements() {
+        /* utility holder */ }
 
     /** Marker interface for all ladder elements. */
-    public interface LadderElement { }
+    public interface LadderElement {
+    }
 
     /** A coil with an associated variable name. */
     public static final class Coil implements LadderElement {
@@ -32,13 +36,15 @@ public final class LadderElements {
 
         @Override
         public String toString() {
-            return "Coil{" + var + '}';
+            return var + " := ";
         }
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Coil)) return false;
+            if (this == o)
+                return true;
+            if (!(o instanceof Coil))
+                return false;
             Coil coil = (Coil) o;
             return var == null ? coil.var == null : var.equals(coil.var);
         }
@@ -63,13 +69,15 @@ public final class LadderElements {
 
         @Override
         public String toString() {
-            return "Contact{" + var + '}';
+            return  var + " /\\ ";
         }
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (!(o instanceof Contact)) return false;
+            if (this == o)
+                return true;
+            if (!(o instanceof Contact))
+                return false;
             Contact contact = (Contact) o;
             return var == null ? contact.var == null : var.equals(contact.var);
         }
@@ -88,52 +96,72 @@ public final class LadderElements {
 
         @Override
         public String toString() {
-            return "NegatedContact{" + getVar() + '}';
+            return "¬" + getVar() + " /\\ ";
         }
     }
 
     /** A vertical link in the ladder diagram. Use the singleton instance. */
     public static final class VerticalLink implements LadderElement {
         public static final VerticalLink INSTANCE = new VerticalLink();
-        private VerticalLink() { }
+
+        private VerticalLink() {
+        }
 
         @Override
-        public String toString() { return "VerticalLink"; }
+        public String toString() {
+            return "(";
+        }
     }
 
     /** The end marker of a vertical link. Singleton. */
     public static final class EndOfVerticalLink implements LadderElement {
         public static final EndOfVerticalLink INSTANCE = new EndOfVerticalLink();
-        private EndOfVerticalLink() { }
+
+        private EndOfVerticalLink() {
+        }
 
         @Override
-        public String toString() { return "EndOfVerticalLink"; }
+        public String toString() {
+            return ") V";
+        }
     }
 
     /** A horizontal connection/link. Singleton. */
     public static final class HorizontalLink implements LadderElement {
         public static final HorizontalLink INSTANCE = new HorizontalLink();
-        private HorizontalLink() { }
+
+        private HorizontalLink() {
+        }
 
         @Override
-        public String toString() { return "HorizontalLink"; }
+        public String toString() {
+            return "";
+        }
     }
 
     /** The left-power rail of the ladder. Singleton. */
     public static final class LeftPowerRail implements LadderElement {
         public static final LeftPowerRail INSTANCE = new LeftPowerRail();
-        private LeftPowerRail() { }
+
+        private LeftPowerRail() {
+        }
 
         @Override
-        public String toString() { return "LeftPowerRail"; }
+        public String toString() {
+            return "True";
+        }
     }
 
     /** Represents an empty/no-op cell. Singleton. */
     public static final class Empty implements LadderElement {
         public static final Empty INSTANCE = new Empty();
-        private Empty() { }
+
+        private Empty() {
+        }
 
         @Override
-        public String toString() { return "Empty"; }
+        public String toString() {
+            return "";
+        }
     }
 }
