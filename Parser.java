@@ -1,3 +1,4 @@
+
 public class Parser {
 
     /**
@@ -9,6 +10,9 @@ public class Parser {
      * [ left power rail, horizontal link , contact "z" , horizontal link , End of
      * Vertical Link, empty ]
      */
+
+
+     
     public static LadderElements.LadderElement[][] buildExampleGrid() {
         return new LadderElements.LadderElement[][] {
                 {
@@ -36,13 +40,11 @@ public class Parser {
 
         System.out.println("Example ladder grid:");
         for (int r = 0; r < grid.length; r++) {
-            System.out.print("Row " + r + ": ");
+            // System.out.print("Row " + r + ": ");
             for (int c = grid[r].length - 1; c >= 0; c--) {
                 System.out.print(grid[r][c]);
-                if (c > 0)
-                    System.out.print(" , ");
             }
-            System.out.println();
+            // System.out.println();
         }
     }
 

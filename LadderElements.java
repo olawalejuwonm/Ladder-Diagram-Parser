@@ -13,7 +13,6 @@
  * - Empty
  */
 public final class LadderElements {
-    private final int bracketOpened = 0;
 
     private LadderElements() {
         /* utility holder */ }
@@ -64,7 +63,7 @@ public final class LadderElements {
         }
 
         public String getVar() {
-            return var;
+            return " " + var + " ";
         }
 
         @Override
@@ -122,7 +121,7 @@ public final class LadderElements {
 
         @Override
         public String toString() {
-            return ") V";
+            return ") V ";
         }
     }
 
