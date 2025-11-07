@@ -1,21 +1,20 @@
-public final class DatTypes {
+public final class DataTypes {
 
+    private DataTypes() {
+        /* utility holder */ }
 
     /** Marker interface for all ladder elements. */
-    public interface DatTypesElement {
+    public interface DT {
     }
 
     /** A coil with an associated variable name. */
-    public static final class Coil implements DatTypesElement {
+    public static final class Coil implements DT {
         private final String var;
 
         public Coil(String var) {
             this.var = var;
         }
 
-        // public String getVar() {
-        //     return var;
-        // }
 
         @Override
         public String toString() {
@@ -24,20 +23,17 @@ public final class DatTypes {
     }
 
     /** A normally open contact with an associated variable name. */
-    public static class Contact implements DatTypesElement {
-        private final String var;
+    public static class Contact implements DT {
+        public final String var;
 
         public Contact(String var) {
             this.var = var;
         }
 
-        public String getVar() {
-            return " " + var + " ";
-        }
 
         @Override
         public String toString() {
-            return  var + " /\\ ";
+            return var + " /\\ ";
         }
 
     }
@@ -50,12 +46,12 @@ public final class DatTypes {
 
         @Override
         public String toString() {
-            return "¬" + getVar() + " /\\ ";
+            return "¬" + this.var + " /\\ ";
         }
     }
 
     /** A vertical link in the ladder diagram */
-    public static final class VerticalLink implements DatTypesElement {
+    public static final class VerticalLink implements DT {
         public static final VerticalLink INSTANCE = new VerticalLink();
 
         private VerticalLink() {
@@ -68,7 +64,7 @@ public final class DatTypes {
     }
 
     /** The end marker of a vertical link. */
-    public static final class EndOfVerticalLink implements DatTypesElement {
+    public static final class EndOfVerticalLink implements DT {
         public static final EndOfVerticalLink INSTANCE = new EndOfVerticalLink();
 
         private EndOfVerticalLink() {
@@ -76,12 +72,12 @@ public final class DatTypes {
 
         @Override
         public String toString() {
-            return ") V ";
+            return ") \\/ ";
         }
     }
 
     /** A horizontal connection/link. */
-    public static final class HorizontalLink implements DatTypesElement {
+    public static final class HorizontalLink implements DT {
         public static final HorizontalLink INSTANCE = new HorizontalLink();
 
         private HorizontalLink() {
@@ -93,8 +89,8 @@ public final class DatTypes {
         }
     }
 
-    /** The left-power rail of the ladder. Singleton. */
-    public static final class LeftPowerRail implements DatTypesElement {
+    /** The left-power rail of the ladder. */
+    public static final class LeftPowerRail implements DT {
         public static final LeftPowerRail INSTANCE = new LeftPowerRail();
 
         private LeftPowerRail() {
@@ -106,8 +102,8 @@ public final class DatTypes {
         }
     }
 
-    /** Represents an empty/no-op cell. Singleton. */
-    public static final class Empty implements DatTypesElement {
+    /** Represents an empty/no-op cell.  */
+    public static final class Empty implements DT {
         public static final Empty INSTANCE = new Empty();
 
         private Empty() {

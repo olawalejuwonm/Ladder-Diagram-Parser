@@ -1,64 +1,52 @@
 
 public class Parser {
 
-    /**
-     * Build the example 2D ladder grid using LadderElements types.
-     *
-     * Grid layout (2 rows x 6 columns):
-     * [ left power rail , contact "x" , horizontal link , negated contact "y" ,
-     * vertical link, coil "r" ],
-     * [ left power rail, horizontal link , contact "z" , horizontal link , End of
-     * Vertical Link, empty ]
-     */
-
-    public static LadderElements.LadderElement[][] buildExampleGrid() {
-        return new LadderElements.LadderElement[][] {
+    public static DataTypes.DT[][] buildExampleGrid1() {
+        return new DataTypes.DT[][] {
                 {
-                        LadderElements.LeftPowerRail.INSTANCE,
-                        new LadderElements.Contact("x"),
-                        LadderElements.HorizontalLink.INSTANCE,
-                        new LadderElements.NegatedContact("y"),
-                        LadderElements.VerticalLink.INSTANCE,
-                        new LadderElements.Coil("r")
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.Contact("x"),
+                        DataTypes.HorizontalLink.INSTANCE,
+                        new DataTypes.NegatedContact("y"),
+                        DataTypes.VerticalLink.INSTANCE,
+                        new DataTypes.Coil("r")
                 },
                 {
-                        LadderElements.LeftPowerRail.INSTANCE,
-                        LadderElements.HorizontalLink.INSTANCE,
-                        new LadderElements.Contact("z"),
-                        LadderElements.HorizontalLink.INSTANCE,
-                        LadderElements.EndOfVerticalLink.INSTANCE,
-                        LadderElements.Empty.INSTANCE
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        DataTypes.HorizontalLink.INSTANCE,
+                        new DataTypes.Contact("z"),
+                        DataTypes.HorizontalLink.INSTANCE,
+                        DataTypes.EndOfVerticalLink.INSTANCE,
+                        DataTypes.Empty.INSTANCE
                 }
         };
     }
 
-    // P6.SG = (P6.QS /\ True) V P6.SG /\ ¬P6.QX /\ True 
-    public static LadderElements.LadderElement[][] buildExampleGrid2() {
-        return new LadderElements.LadderElement[][] {
+    // P6.SG = (P6.QS /\ True) V P6.SG /\ ¬P6.QX /\ True
+    public static DataTypes.DT[][] buildExampleGrid2() {
+        return new DataTypes.DT[][] {
                 {
-                        LadderElements.LeftPowerRail.INSTANCE,
-                        new LadderElements.Contact("P6.QS"),
-                        LadderElements.HorizontalLink.INSTANCE,
-                        LadderElements.HorizontalLink.INSTANCE,
-                        LadderElements.VerticalLink.INSTANCE,
-                        new LadderElements.Coil("P6.SG")
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.Contact("P6.QS"),
+                        DataTypes.HorizontalLink.INSTANCE,
+                        DataTypes.HorizontalLink.INSTANCE,
+                        DataTypes.VerticalLink.INSTANCE,
+                        new DataTypes.Coil("P6.SG")
                 },
                 {
-                        LadderElements.LeftPowerRail.INSTANCE,
-                        new LadderElements.NegatedContact("P6.QX"),
-                        LadderElements.HorizontalLink.INSTANCE,
-                        new LadderElements.Contact("P6.SG"),
-                        LadderElements.EndOfVerticalLink.INSTANCE,
-                        LadderElements.Empty.INSTANCE
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.NegatedContact("P6.QX"),
+                        DataTypes.HorizontalLink.INSTANCE,
+                        new DataTypes.Contact("P6.SG"),
+                        DataTypes.EndOfVerticalLink.INSTANCE,
+                        DataTypes.Empty.INSTANCE
                 }
         };
     }
 
-    /** Simple demo runner to print the grid. */
     public static void main(String[] args) {
-        LadderElements.LadderElement[][] grid = buildExampleGrid2();
+        DataTypes.DT[][] grid = buildExampleGrid1();
 
-        System.out.println("Example ladder grid:");
         for (int r = 0; r < grid.length; r++) {
             // System.out.print("Row " + r + ": ");
             for (int c = grid[r].length - 1; c >= 0; c--) {
