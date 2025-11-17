@@ -44,12 +44,38 @@ public class Parser {
         };
     }
 
+       public static DataTypes.DT[][] buildExampleGrid3() {
+        return new DataTypes.DT[][] {
+                {
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.Contact("x"),
+                        DataTypes.VerticalLink.INSTANCE,
+                        new DataTypes.Coil("r")
+                },
+                {
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.Contact("y"),
+                        DataTypes.EndOfVerticalLink.INSTANCE,
+                        DataTypes.Empty.INSTANCE
+                },
+                 {
+                        DataTypes.LeftPowerRail.INSTANCE,
+                        new DataTypes.Contact("z"),
+                        DataTypes.EndOfVerticalLink.INSTANCE,
+                        DataTypes.Empty.INSTANCE
+                }
+        };
+    }
+
     public static void main(String[] args) {
-        DataTypes.DT[][] grid = buildExampleGrid1();
+        DataTypes.DT[][] grid = buildExampleGrid3();
 
         for (int r = 0; r < grid.length; r++) {
             // System.out.print("Row " + r + ": ");
             for (int c = grid[r].length - 1; c >= 0; c--) {
+                // set the nextLadderElement to the future one
+                DataTypes.nextLadderElement = (c - 1 >= 0) ? grid[r][c - 1] : null;
+                // System.err.println("Next element at (" + r + "," + (c - 1) + "): " + DataTypes.nextLadderElement);
                 System.out.print(grid[r][c]);
             }
             // System.out.println();

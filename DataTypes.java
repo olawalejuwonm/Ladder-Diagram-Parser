@@ -1,5 +1,8 @@
 public final class DataTypes {
 
+    // holds the previous ladder element; only ladder element types are allowed
+    public volatile static DT nextLadderElement = null;
+
     private DataTypes() {
         /* utility holder */ }
 
@@ -15,7 +18,6 @@ public final class DataTypes {
             this.var = var;
         }
 
-
         @Override
         public String toString() {
             return var + " := ";
@@ -30,10 +32,13 @@ public final class DataTypes {
             this.var = var;
         }
 
-
         @Override
         public String toString() {
-            return var + " /\\ ";
+            if (DataTypes.nextLadderElement instanceof LeftPowerRail) {
+                return var;
+            } else {
+                return var + " /\\ ";
+            }
         }
 
     }
@@ -46,7 +51,11 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return "¬" + this.var + " /\\ ";
+            if (DataTypes.nextLadderElement instanceof LeftPowerRail) {
+                return "¬" + this.var;
+            } else {
+                return "¬" + this.var + " /\\ ";
+            }
         }
     }
 
@@ -72,7 +81,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return " \\/ ( ";
+            return " \\/ (";
         }
     }
 
@@ -98,11 +107,11 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return "True)";
+            return ")";
         }
     }
 
-    /** Represents an empty/no-op cell.  */
+    /** Represents an empty/no-op cell. */
     public static final class Empty implements DT {
         public static final Empty INSTANCE = new Empty();
 
