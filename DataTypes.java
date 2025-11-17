@@ -72,7 +72,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return ") \\/ ";
+            return " \\/ ( ";
         }
     }
 
@@ -98,7 +98,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return "True";
+            return "True)";
         }
     }
 
