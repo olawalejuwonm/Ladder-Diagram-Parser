@@ -81,8 +81,8 @@ public class Parser {
         }
 
         public static void main(String[] args) {
-                DataTypes.DT[][] grid = justHorizontal();
-                // DataTypes.DT[][] grid = buildExampleGrid1();
+                // DataTypes.DT[][] grid = justHorizontal();
+                DataTypes.DT[][] grid = buildExampleGrid1();
                 // DataTypes.DT[][] grid = buildExampleGrid2();
                 // DataTypes.DT[][] grid = buildExampleGrid3();
                 for (int r = 0; r < grid.length; r++) {
