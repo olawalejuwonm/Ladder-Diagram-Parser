@@ -1,7 +1,8 @@
 public final class DataTypes {
 
-    // holds the previous ladder element; only ladder element types are allowed
-    public volatile static DT nextLadderElement = null;
+    public volatile static String formula = null;
+
+    public volatile static int bracketOpen = 0;
 
     private DataTypes() {
         /* utility holder */ }
@@ -34,11 +35,9 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            if (DataTypes.nextLadderElement instanceof LeftPowerRail) {
-                return var;
-            } else {
-                return var + " /\\ ";
-            }
+
+            return var + " /\\ ";
+
         }
 
     }
@@ -51,11 +50,9 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            if (DataTypes.nextLadderElement instanceof LeftPowerRail) {
-                return "¬" + this.var;
-            } else {
-                return "¬" + this.var + " /\\ ";
-            }
+
+            return "¬" + this.var + " /\\ ";
+
         }
     }
 
@@ -68,6 +65,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
+            bracketOpen++;
             return "(";
         }
     }
@@ -81,6 +79,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
+            bracketOpen++;
             return " \\/ (";
         }
     }
@@ -94,6 +93,7 @@ public final class DataTypes {
 
         @Override
         public String toString() {
+
             return "";
         }
     }
@@ -107,7 +107,12 @@ public final class DataTypes {
 
         @Override
         public String toString() {
-            return ")";
+            String ClosingBrackets = "";
+            for (int i = 0; i < bracketOpen; i++) {
+                ClosingBrackets += ")";
+            }
+            bracketOpen = 0;
+            return "True" + ClosingBrackets;
         }
     }
 
